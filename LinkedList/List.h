@@ -29,13 +29,13 @@ public:
 	/// Adds a new node to the beginning of the list
 	/// </summary>
 	/// <param name="value"></param>
-	void pushFront(const T& value) const;
+	void pushFront(const T& value);
 
 	/// <summary>
 	/// Adds a new node to the end of the list
 	/// </summary>
 	/// <param name="value"></param>
-	void pushBack(const T& value) const;
+	void pushBack(const T& value);
 
 	/// <summary>
 	/// Adds a new node at the given index
@@ -71,7 +71,7 @@ public:
 	bool getData(Iterator<T>& iter, int index);
 
 	/// <returns>The amount of nodes in the list</returns>
-	int getLength() const;
+	int getLength() const { return m_nodeCount; }
 
 	const List<T>& operator =(const List<T>& otherList);
 
@@ -101,9 +101,20 @@ inline List<T>::List(const List<T>& other)
 }
 
 template<typename T>
+inline List<T>::~List()
+{
+}
+
+template<typename T>
 inline void List<T>::destroy()
 {
-	
+	Node<T>* temp2;
+
+	for (Node<T>* temp = m_first; temp != nullptr; temp = temp2 )
+	{
+		temp2 = temp->next;
+		delete temp;
+	}
 }
 
 template<typename T>
@@ -121,7 +132,49 @@ inline Iterator<T> List<T>::end() const
 template<typename T>
 inline bool List<T>::contains(const T object) const
 {
+	for (Iterator<T> iter = begin(); iter != end(); iter++)
+	{
+		if (*iter == object)
+			return true;
+		return false;
+	}
+}
+
+template<typename T>
+inline void List<T>::pushFront(const T& value)
+{
+	Node<T>* newNode = new Node<T>(value);
+	m_first = newNode;
+	m_first->next->previous = newNode;
+	m_first->previous = nullptr;
+}
+
+template<typename T>
+inline void List<T>::pushBack(const T& value)
+{
+	Node<T>* newNode = new Node<T>(value);
+	
+}
+
+template<typename T>
+inline bool List<T>::insert(const T& value, int index)
+{
 	return false;
+}
+
+template<typename T>
+inline void List<T>::remove(const T& value)
+{
+	for (Iterator<T> iter = begin(); iter != end(); iter++)
+	{
+		
+	}
+}
+
+template<typename T>
+inline void List<T>::print() const
+{
+
 }
 
 template<typename T>
