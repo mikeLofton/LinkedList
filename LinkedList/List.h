@@ -187,7 +187,10 @@ inline void List<T>::remove(const T& value)
 template<typename T>
 inline void List<T>::print() const
 {
-
+	for (Iterator<T> iter = begin(); iter != end(); ++iter)
+	{
+		std::cout << *iter << std::endl;
+	}
 }
 
 template<typename T>
