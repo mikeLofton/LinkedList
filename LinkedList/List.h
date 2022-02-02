@@ -1,5 +1,6 @@
 #pragma once
 #include "Iterator.h"
+#include <iostream>
 template <typename T>
 class List
 {
@@ -132,7 +133,7 @@ inline Iterator<T> List<T>::end() const
 template<typename T>
 inline bool List<T>::contains(const T object) const
 {
-	for (Iterator<T> iter = begin(); iter != end(); iter++)
+	for (Iterator<T> iter = begin(); iter != end(); ++iter)
 	{
 		if (*iter == object)
 			return true;
@@ -144,9 +145,21 @@ template<typename T>
 inline void List<T>::pushFront(const T& value)
 {
 	Node<T>* newNode = new Node<T>(value);
+
+	if (m_first != nullptr)
+	{
+		m_first->previous = newNode;
+		newNode->next = m_first;
+	}
+
 	m_first = newNode;
-	m_first->next->previous = newNode;
-	m_first->previous = nullptr;
+
+	if (m_last != nullptr)
+	{
+		m_last = newNode;
+	}
+
+	m_nodeCount++;
 }
 
 template<typename T>
@@ -183,4 +196,15 @@ inline void List<T>::initialize()
 	m_first = nullptr;
 	m_last = nullptr;
 	m_nodeCount = 0;
+}
+
+template<typename T>
+inline bool List<T>::getData(Iterator<T>& iter, int index)
+{
+	iter = begin();
+
+	for (int i = 0; i < index; i++)
+		++iter;
+
+	return *iter;
 }
