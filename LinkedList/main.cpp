@@ -12,5 +12,11 @@ int main()
 
 	testList.print();
 
+	system("pause");
+
+	testList.destroy();
+
+	testList.print();
+
 	return 0;
 }

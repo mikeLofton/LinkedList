@@ -96,9 +96,7 @@ inline List<T>::List()
 template<typename T>
 inline List<T>::List(const List<T>& other)
 {
-	m_first = other.m_first;
-	m_last = other.m_last;
-	m_nodeCount = other.m_nodeCount;
+	*this = other;
 }
 
 template<typename T>
@@ -116,6 +114,7 @@ inline void List<T>::destroy()
 		temp2 = temp->next;
 		delete temp;
 	}
+	initialize();
 }
 
 template<typename T>
@@ -127,7 +126,7 @@ inline Iterator<T> List<T>::begin() const
 template<typename T>
 inline Iterator<T> List<T>::end() const
 {
-	return Iterator<T>(m_last);
+	return Iterator<T>(m_last->next);
 }
 
 template<typename T>
@@ -154,6 +153,11 @@ inline void List<T>::pushFront(const T& value)
 
 	m_first = newNode;
 
+	if (m_last == nullptr)
+	{
+		m_last = newNode;
+	}
+
 	m_nodeCount++;
 }
 
@@ -170,6 +174,11 @@ inline void List<T>::pushBack(const T& value)
 
 	m_last = newNode;
 
+	if (m_first == nullptr)
+	{
+		m_first = newNode;
+	}
+
 	m_nodeCount++;
 	
 }
@@ -183,7 +192,7 @@ inline bool List<T>::insert(const T& value, int index)
 template<typename T>
 inline void List<T>::remove(const T& value)
 {
-	for (Iterator<T> iter = begin(); iter != end(); iter++)
+	for (Iterator<T> iter = begin(); iter != end(); ++iter)
 	{
 		
 	}
@@ -192,6 +201,9 @@ inline void List<T>::remove(const T& value)
 template<typename T>
 inline void List<T>::print() const
 {
+	if (isEmpty())
+		return;
+
 	for (Iterator<T> iter = begin(); iter != end(); ++iter)
 	{
 		std::cout << *iter << std::endl;
@@ -224,4 +236,17 @@ inline bool List<T>::getData(Iterator<T>& iter, int index)
 		++iter;
 
 	return *iter;
+}
+
+template<typename T>
+inline const List<T>& List<T>::operator=(const List<T>& otherList)
+{
+	destroy();
+
+	for (Iterator<T> iter = otherList.begin(); iter != otherList.end(); ++iter)
+	{
+		pushBack(*iter);
+	}
+
+	return *this;
 }
