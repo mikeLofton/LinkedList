@@ -154,11 +154,6 @@ inline void List<T>::pushFront(const T& value)
 
 	m_first = newNode;
 
-	if (m_last != nullptr)
-	{
-		m_last = newNode;
-	}
-
 	m_nodeCount++;
 }
 
@@ -166,6 +161,16 @@ template<typename T>
 inline void List<T>::pushBack(const T& value)
 {
 	Node<T>* newNode = new Node<T>(value);
+
+	if (m_last != nullptr)
+	{
+		m_last->next = newNode;
+		newNode->previous = m_last;
+	}
+
+	m_last = newNode;
+
+	m_nodeCount++;
 	
 }
 
@@ -199,6 +204,15 @@ inline void List<T>::initialize()
 	m_first = nullptr;
 	m_last = nullptr;
 	m_nodeCount = 0;
+}
+
+template<typename T>
+inline bool List<T>::isEmpty() const
+{
+	if (m_first == nullptr && m_last == nullptr)
+		return true;
+	else
+		return false;
 }
 
 template<typename T>
