@@ -320,5 +320,13 @@ inline const List<T>& List<T>::operator=(const List<T>& otherList)
 template<typename T>
 inline void List<T>::sort()
 {
+	T temp;
 
+	for (int i = 0; i < getLength() - 1; i++)
+	{
+		for (int j = 0; j < getLength() - i - 1; j++)
+		{
+			
+		}
+	}
 }
