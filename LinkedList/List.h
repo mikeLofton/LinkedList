@@ -102,6 +102,7 @@ inline List<T>::List(const List<T>& other)
 template<typename T>
 inline List<T>::~List()
 {
+	destroy();
 }
 
 template<typename T>
