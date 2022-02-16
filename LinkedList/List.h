@@ -141,7 +141,6 @@ inline bool List<T>::contains(const T object) const
 	{
 		if (*iter == object) //If the data the iterator is looking at equals the object
 			return true; //Return true
-		return false; //Otherwise return false
 	}
 }
 
@@ -295,12 +294,16 @@ inline bool List<T>::isEmpty() const
 template<typename T>
 inline bool List<T>::getData(Iterator<T>& iter, int index)
 {
+	//If the given index is less than zero or more than the number of nodes return false
+	if (index < 0 || index > m_nodeCount)
+		return false;
+
 	iter = begin();
 
 	for (int i = 0; i < index; i++)
 		++iter;
 
-	return *iter;
+	return true;
 }
 
 template<typename T>
@@ -320,13 +323,23 @@ inline const List<T>& List<T>::operator=(const List<T>& otherList)
 template<typename T>
 inline void List<T>::sort()
 {
-	T temp;
+	Node<T>* tempNode = new Node<T>();
+	Node<T>* currentNode = new Node<T>();
 
 	for (int i = 0; i < getLength() - 1; i++)
 	{
+		currentNode = m_first;
+
 		for (int j = 0; j < getLength() - i - 1; j++)
 		{
-			
+			if (currentNode->next->data < currentNode->data)
+			{
+				tempNode->data = currentNode->next->data;
+				currentNode->next->data = currentNode->data;
+				currentNode->data = tempNode->data;
+			}
+
+			currentNode = currentNode->next;
 		}
 	}
 }
