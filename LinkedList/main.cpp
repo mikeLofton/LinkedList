@@ -5,16 +5,17 @@ int main()
 {
 	List<int> testList = List<int>();
 
-	testList.pushFront(7);
-	testList.pushFront(8);
-	testList.pushBack(10);
-	testList.pushBack(23);
+	testList.pushBack(1);
+	testList.pushBack(2);
+	testList.pushBack(3);
+	testList.pushBack(4);
+	testList.pushBack(5);
 
 	testList.print();
 
 	system("pause");
 
-	testList.destroy();
+	testList.remove(6);
 
 	testList.print();
 
