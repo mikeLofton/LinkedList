@@ -1,11 +1,11 @@
-Assessmant 4
+Assessment 4
 
 # LinkedList
 
 This program is meant to showcase a Doubly Linked List. 
 Program displays 3 test cases.
 
-# How to Open Program
+# How To Open Program
 
 # Test Cases
 Progress through test cases by pressing a key when prompted
