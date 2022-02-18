@@ -28,7 +28,7 @@ LinkedList
 # II. Design
  1. *System Architecture*
 
-    In this program Node is a templeted class that stores data within the node and keeps track of a node's left and right node. Iterator.h includes Node.h. Iterator is a templeted class that creates iterators that point to nodes. Iterator contains logic for reading the next and/or previous nodes in relation to its current node and comparing itself to other iterators. List.h includes Iterator.h and iostream. List is a templeted class that creates lists that can contain nodes of data. List contains logic for inserting, removing, printing, and sorting nodes. main.cpp includes List.h and iostream. The main currently contains a test list where functions can be tested.
+    Node.h has no includes. In this program Node is a templeted class that stores data within the node and keeps track of a node's left and right node. Iterator.h includes Node.h. Iterator is a templeted class that creates iterators that point to nodes. Iterator contains logic for reading the next and/or previous nodes in relation to its current node and comparing itself to other iterators. List.h includes Iterator.h and iostream. List is a templeted class that creates lists that can contain nodes of data. List contains logic for inserting, removing, printing, and sorting nodes. main.cpp includes List.h and iostream. The main currently contains a test list where functions can be tested.
  2. *Object Information*
     * **File Name:** main.cpp
         * Name: main()
