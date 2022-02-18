@@ -14,16 +14,16 @@ LinkedList
 
     **Problem Statement:** 
 
-    Implement a Doubly Linked List 
+    Implement a Doubly Linked List.
 
     **Problem Specifications:**
     
-    * Completion of functons given in the UML  
+    * Completion of functons given in the UML. 
 
  2. **Input Information:**
-    * Functions can be tested in the main class
+    * Functions can be tested in the main class.
  3. **Output Information:**
-    * The results of the functions can be printed in the console window
+    * The results of the functions can be printed in the console window.
 
 # II. Design
  1. *System Architecture*
