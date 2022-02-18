@@ -16,7 +16,13 @@ int main()
 	system("pause");
 
 	testList.sort();
-	testList.remove(7);
+	testList.remove(10);
+
+	testList.print();	
+
+	system("pause");
+
+	testList.insert(45, 2);
 
 	testList.print();
 
