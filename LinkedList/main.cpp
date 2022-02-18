@@ -29,5 +29,7 @@ int main()
 
 	testList.print();
 
+	system("pause");
+
 	return 0;
 }
