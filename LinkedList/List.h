@@ -5,8 +5,19 @@ template <typename T>
 class List
 {
 public:
+
+	/// <summary>
+	/// Base Constructor
+	/// </summary>
 	List();
+
+	/// <summary>
+	/// Constructor meant to set the list's data to equal another list's data
+	/// </summary>
+	/// <param name="other">The list to copy from</param>
 	List(const List<T>& other);
+
+	///Destructor destroys all nodes in the list
 	~List();
 
 	/// <summary>
@@ -23,32 +34,32 @@ public:
 	/// <summary>
 	/// Checks to see if the given item is in the list
 	/// </summary>
-	/// <param name="object"></param>
+	/// <param name="object">The item to look for</param>
 	bool contains(const T object) const;
 
 	/// <summary>
 	/// Adds a new node to the beginning of the list
 	/// </summary>
-	/// <param name="value"></param>
+	/// <param name="value">The value of the node you're adding</param>
 	void pushFront(const T& value);
 
 	/// <summary>
 	/// Adds a new node to the end of the list
 	/// </summary>
-	/// <param name="value"></param>
+	/// <param name="value">The value of the node you're adding</param>
 	void pushBack(const T& value);
 
 	/// <summary>
 	/// Adds a new node at the given index
 	/// </summary>
-	/// <param name="value"></param>
-	/// <param name="index"></param>
+	/// <param name="value">The value of the node you're adding</param>
+	/// <param name="index">The index where the new node will be placed</param>
 	bool insert(const T& value, int index);
 
 	/// <summary>
 	/// Remove all nodes with the given value
 	/// </summary>
-	/// <param name="value"></param>
+	/// <param name="value">The value to remove</param>
 	void remove(const T& value);
 
 	/// <summary>
@@ -67,13 +78,17 @@ public:
 	/// <summary>
 	/// Sets the given iterator to point to a node at the given index
 	/// </summary>
-	/// <param name="iter"></param>
-	/// <param name="index"></param>
+	/// <param name="iter">The iterator that will read through the list</param>
+	/// <param name="index">The index of the desired data</param>
 	bool getData(Iterator<T>& iter, int index);
 
 	/// <returns>The amount of nodes in the list</returns>
 	int getLength() const { return m_nodeCount; }
 
+	/// <summary>
+	/// Copies values of one list into another
+	/// </summary>
+	/// <param name="otherList">The list to copy</param>
 	const List<T>& operator =(const List<T>& otherList);
 
 	/// <summary>
@@ -96,7 +111,7 @@ inline List<T>::List()
 template<typename T>
 inline List<T>::List(const List<T>& other)
 {
-	*this = other;
+	*this = other; //Set this list to the other list
 }
 
 template<typename T>
@@ -126,23 +141,26 @@ inline void List<T>::destroy()
 template<typename T>
 inline Iterator<T> List<T>::begin() const
 {
-	return Iterator<T>(m_first);
+	return Iterator<T>(m_first); //Return an iterator that points to the first node
 }
 
 template<typename T>
 inline Iterator<T> List<T>::end() const
 {
-	return Iterator<T>(m_last->next);
+	return Iterator<T>(m_last->next); //Return an iterator that points to last's next node
 }
 
 template<typename T>
 inline bool List<T>::contains(const T object) const
 {
+	//While the iterator is not at the end
 	for (Iterator<T> iter = begin(); iter != end(); ++iter)
 	{
 		if (*iter == object) //If the data the iterator is looking at equals the object
 			return true; //Return true
 	}
+
+	return false; //Return false by default
 }
 
 template<typename T>
@@ -299,9 +317,9 @@ inline bool List<T>::getData(Iterator<T>& iter, int index)
 	if (index < 0 || index > m_nodeCount)
 		return false;
 
-	iter = begin();
+	iter = begin(); //Set iterator to the beginning
 
-	for (int i = 0; i < index; i++)
+	for (int i = 0; i < index; i++) //Iterate until you hit the index
 		++iter;
 
 	return true;
@@ -324,23 +342,23 @@ inline const List<T>& List<T>::operator=(const List<T>& otherList)
 template<typename T>
 inline void List<T>::sort()
 {
-	Node<T>* tempNode = new Node<T>();
-	Node<T>* currentNode = new Node<T>();
+	Node<T>* tempNode = new Node<T>(); //Create a temp node
+	Node<T>* currentNode = new Node<T>(); //Create a node to track the current node
 
-	for (int i = 0; i < getLength() - 1; i++)
+	for (int i = 0; i < getLength() - 1; i++) //While i is less than the length minus 1
 	{
-		currentNode = m_first;
+		currentNode = m_first; //Set current node to be the first node
 
-		for (int j = 0; j < getLength() - i - 1; j++)
+		for (int j = 0; j < getLength() - i - 1; j++) //While i is less then the length minus i minus 1
 		{
-			if (currentNode->next->data < currentNode->data)
+			if (currentNode->next->data < currentNode->data) //If currentNode's next's data is less than currentNode's data
 			{
-				tempNode->data = currentNode->next->data;
-				currentNode->next->data = currentNode->data;
-				currentNode->data = tempNode->data;
+				tempNode->data = currentNode->next->data; //Set tempNode's data to be cN's next's data
+				currentNode->next->data = currentNode->data; //Set cN's next's data to be cN's data
+				currentNode->data = tempNode->data; //Set cN's data to be tempNode's data
 			}
 
-			currentNode = currentNode->next;
+			currentNode = currentNode->next; //Set current to be current node's next
 		}
 	}
 }
