@@ -16,18 +16,10 @@ int main()
 
 	system("pause"); //Pause
 
-	//Sort Test
-	testList.sort(); 
-	//Remove Test
-	testList.remove(10);
-
-	testList.print();	
-
-	system("pause");
-	//Insert test
-	testList.insert(45, 2);
-
-	testList.print();
+	List<int> test2List = List<int>(testList);
+	/*test2List.sort();*/
+	test2List.destroy();
+	test2List.print();
 
 	system("pause");
 

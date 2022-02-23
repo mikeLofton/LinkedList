@@ -111,7 +111,10 @@ inline List<T>::List()
 template<typename T>
 inline List<T>::List(const List<T>& other)
 {
-	*this = other; //Set this list to the other list
+	for (Iterator<T> iter = other.begin(); iter != other.end(); ++iter)
+	{
+		pushBack(*iter); //Copy the otherlist's data into this list
+	}
 }
 
 template<typename T>
