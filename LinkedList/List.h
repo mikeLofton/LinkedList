@@ -111,6 +111,9 @@ inline List<T>::List()
 template<typename T>
 inline List<T>::List(const List<T>& other)
 {
+	if (other.isEmpty())
+		return;
+
 	for (Iterator<T> iter = other.begin(); iter != other.end(); ++iter)
 	{
 		pushBack(*iter); //Copy the otherlist's data into this list
@@ -156,6 +159,9 @@ inline Iterator<T> List<T>::end() const
 template<typename T>
 inline bool List<T>::contains(const T object) const
 {
+	if (isEmpty())
+		return false;
+	
 	//While the iterator is not at the end
 	for (Iterator<T> iter = begin(); iter != end(); ++iter)
 	{

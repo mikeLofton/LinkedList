@@ -16,12 +16,13 @@ int main()
 
 	system("pause"); //Pause
 
-	List<int> test2List = List<int>(testList);
-	/*test2List.sort();*/
-	test2List.destroy();
-	test2List.print();
+	testList.destroy();
 
-	system("pause");
+	testList.contains(6);
+
+	List<int> testList2 = List<int>(testList);
+	testList.print();
+	testList2.print();
 
 	return 0;
 }
